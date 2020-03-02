@@ -12,11 +12,17 @@ namespace Xadrez_ConsoleMode
         {
             try
             {
-                PosicaoXadrez posicao = new PosicaoXadrez('h', 1);
-                Console.WriteLine(posicao);
-                Console.WriteLine(posicao.toPosicao());
+                Tabuleiro tabuleiro = new Tabuleiro(8, 8);
+                tabuleiro.colocarPeca(new Torre(Cor.Preta, tabuleiro), new Posicao(0, 0));
+                tabuleiro.colocarPeca(new Torre(Cor.Preta, tabuleiro), new Posicao(1, 3));
+                tabuleiro.colocarPeca(new Rei(Cor.Preta, tabuleiro), new Posicao(2, 4));
+                Tela.ImprimirTabuleiro(tabuleiro);
             }
             catch(TabuleiroException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            catch (Exception exception)
             {
                 Console.WriteLine(exception.Message);
             }
