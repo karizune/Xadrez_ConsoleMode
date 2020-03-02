@@ -19,5 +19,9 @@ namespace Xadrez_ConsoleMode.tabuleiro
             this.tabuleiro = tabuleiro;
             QuantidadeMovimentos = 0;
         }
+        public void IncrementarMovimento()
+        {
+            QuantidadeMovimentos++;
+        }
     }
 }

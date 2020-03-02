@@ -1,6 +1,6 @@
 ﻿namespace Xadrez_ConsoleMode.tabuleiro
 {
-    class Posicao
+    public class Posicao
     {
         public int Linha { get; set; }
         public int Coluna { get; set; }

@@ -12,11 +12,17 @@ namespace Xadrez_ConsoleMode
         {
             try
             {
-                Tabuleiro tabuleiro = new Tabuleiro(8, 8);
-                tabuleiro.colocarPeca(new Torre(Cor.Preta, tabuleiro), new Posicao(0, 0));
-                tabuleiro.colocarPeca(new Torre(Cor.Preta, tabuleiro), new Posicao(1, 3));
-                tabuleiro.colocarPeca(new Rei(Cor.Preta, tabuleiro), new Posicao(2, 4));
-                Tela.ImprimirTabuleiro(tabuleiro);
+                Partida_de_Xadrez partida = new Partida_de_Xadrez();
+                while (!partida.PartidaTerminada)
+                {
+                    Console.Clear();
+                    Tela.ImprimirTabuleiro(partida.tabuleiro);
+                    Console.Write("Digite a posição da peça para mover: ");
+                    Posicao origem = Tela.LerPosicaoXadrez().toPosicao();
+                    Console.Write("Digite a posição de destino da peça: ");
+                    Posicao Destino = Tela.LerPosicaoXadrez().toPosicao();
+                    partida.ExecutaMovimento(origem, Destino);
+                }
             }
             catch(TabuleiroException exception)
             {
@@ -24,7 +30,7 @@ namespace Xadrez_ConsoleMode
             }
             catch (Exception exception)
             {
-                Console.WriteLine(exception.Message);
+                Console.WriteLine($"\nErro inesperado:\nMensagem: {exception.Message}");
             }
         }
     }

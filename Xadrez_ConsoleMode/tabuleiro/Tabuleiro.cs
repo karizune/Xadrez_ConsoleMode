@@ -29,11 +29,25 @@ namespace Xadrez_ConsoleMode.tabuleiro
         }
         public void colocarPeca(Peca peca, Posicao posicao)
         {
-            if(ExistePeca(posicao))
+            if (ExistePeca(posicao))
             {
-                throw new TabuleiroException("Já existe uma peça nesta posição"); 
+                throw new TabuleiroException("Já existe uma peça nesta posição");
             }
             pecas[posicao.Linha, posicao.Coluna] = peca;
+        }
+        public Peca retirarPeca(Posicao posicao)
+        {
+            if (peca(posicao) == null)
+            {
+                return null;
+            }
+            else
+            {
+                Peca aux = peca(posicao);
+                aux.posicao = null;
+                pecas[posicao.Linha, posicao.Coluna] = null;
+                return aux;
+            }
         }
 
         public bool ExistePeca(Posicao pos)
