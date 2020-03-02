@@ -13,27 +13,19 @@ namespace Xadrez_ConsoleMode
             try
             {
                 Partida_de_Xadrez partida = new Partida_de_Xadrez();
-
                 while (!partida.PartidaTerminada)
                 {
 
                     Console.Clear();
                     Tela.ImprimirTabuleiro(partida.tabuleiro);
-
-                    Console.WriteLine();
-                    Console.Write("Origem: ");
+                    Console.Write($"\nTurno: {partida.turno}\nAguardando Jogada: {partida.JogadorAtual}\nOrigem: ");
                     Posicao origem = Tela.LerPosicaoXadrez().toPosicao();
-
                     bool[,] posicoesPossiveis = partida.tabuleiro.peca(origem).movimentosPossiveis();
-
                     Console.Clear();
                     Tela.ImprimirTabuleiro(partida.tabuleiro, posicoesPossiveis);
-
-                    Console.WriteLine();
-                    Console.Write("Destino: ");
+                    Console.Write("\n\nDestino: ");
                     Posicao destino = Tela.LerPosicaoXadrez().toPosicao();
-
-                    partida.ExecutaMovimento(origem, destino);
+                    partida.RealizaJogada(origem, destino);
                 }
 
             }

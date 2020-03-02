@@ -14,14 +14,14 @@ namespace Xadrez_ConsoleMode
         {
             for (int i = 0; i < tabuleiro.linhas; i++)
             {
-                TextoColorido($"{8 - i} ", ConsoleColor.Yellow);
+                TextoColorido($"\t\t{8 - i} ", ConsoleColor.Yellow);
                 for (int j = 0; j < tabuleiro.colunas; j++)
                 {
                     ImprimirPeca(tabuleiro.peca(i, j));
                 }
                 Console.WriteLine("");
             }
-            TextoColorido("  a b c d e f g h\n", ConsoleColor.Yellow);
+            TextoColorido("\t\t  a b c d e f g h\n", ConsoleColor.Yellow);
         }
 
         public static void ImprimirTabuleiro(Tabuleiro tabuleiro, bool[,] possiveisMovimentos)
@@ -30,7 +30,7 @@ namespace Xadrez_ConsoleMode
             ConsoleColor Original = Console.BackgroundColor;
             for (int i = 0; i < tabuleiro.linhas; i++)
             {
-                TextoColorido($"{8 - i} ", ConsoleColor.Yellow);
+                TextoColorido($"\t\t{8 - i} ", ConsoleColor.Yellow);
                 for (int j = 0; j < tabuleiro.colunas; j++)
                 {
                     if (possiveisMovimentos[i,j])
@@ -46,7 +46,7 @@ namespace Xadrez_ConsoleMode
                 Console.WriteLine("");
             }
             Console.BackgroundColor = Original;
-            TextoColorido("  a b c d e f g h\n", ConsoleColor.Yellow);
+            TextoColorido("\t\t  a b c d e f g h\n", ConsoleColor.Yellow);
         }
 
         public static PosicaoXadrez LerPosicaoXadrez()

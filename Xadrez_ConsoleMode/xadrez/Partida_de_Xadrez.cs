@@ -10,14 +10,14 @@ namespace Xadrez_ConsoleMode.xadrez
     class Partida_de_Xadrez
     {
         public Tabuleiro tabuleiro { get; private set; }
-        private int turno;
-        private Cor JogadorAtual;
+        public int turno { get; private set; }
+        public Cor JogadorAtual { get; private set; }
         public bool PartidaTerminada { get; private set; }
 
         public Partida_de_Xadrez()
         {
-            this.tabuleiro = new Tabuleiro(8,8);
-            this.turno = 1;
+            tabuleiro = new Tabuleiro(8, 8);
+            turno = 1;
             JogadorAtual = Cor.Branca;
             colocarPecas();
             PartidaTerminada = false;
@@ -25,12 +25,33 @@ namespace Xadrez_ConsoleMode.xadrez
 
         public void ExecutaMovimento(Posicao Origem, Posicao Destino)
         {
+            if (ExistePeca(Destino))
+            {
+
+            }
             Peca p = tabuleiro.retirarPeca(Origem);
             p.IncrementarMovimento();
             Peca pecaCapturada = tabuleiro.retirarPeca(Destino);
             tabuleiro.colocarPeca(p, Destino);
         }
-        private void colocarPecas() 
+        public void RealizaJogada(Posicao Origem, Posicao Destino)
+        {
+            ExecutaMovimento(Origem, Destino);
+            turno++;
+            MudaJogador();
+        }
+        private void MudaJogador()
+        {
+            if (JogadorAtual == Cor.Branca)
+            {
+                JogadorAtual = Cor.Preta;
+            }
+            else
+            {
+                JogadorAtual = Cor.Branca;
+            }
+        }
+        private void colocarPecas()
         {
             tabuleiro.colocarPeca(new Torre(Cor.Preta, tabuleiro), new PosicaoXadrez('a', 8).toPosicao());
             tabuleiro.colocarPeca(new Cavalo(Cor.Preta, tabuleiro), new PosicaoXadrez('b', 8).toPosicao());
