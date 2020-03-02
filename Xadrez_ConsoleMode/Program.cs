@@ -13,25 +13,39 @@ namespace Xadrez_ConsoleMode
             try
             {
                 Partida_de_Xadrez partida = new Partida_de_Xadrez();
+
                 while (!partida.PartidaTerminada)
                 {
+
                     Console.Clear();
                     Tela.ImprimirTabuleiro(partida.tabuleiro);
-                    Console.Write("Digite a posição da peça para mover: ");
+
+                    Console.WriteLine();
+                    Console.Write("Origem: ");
                     Posicao origem = Tela.LerPosicaoXadrez().toPosicao();
-                    Console.Write("Digite a posição de destino da peça: ");
-                    Posicao Destino = Tela.LerPosicaoXadrez().toPosicao();
-                    partida.ExecutaMovimento(origem, Destino);
+
+                    bool[,] posicoesPossiveis = partida.tabuleiro.peca(origem).movimentosPossiveis();
+
+                    Console.Clear();
+                    Tela.ImprimirTabuleiro(partida.tabuleiro, posicoesPossiveis);
+
+                    Console.WriteLine();
+                    Console.Write("Destino: ");
+                    Posicao destino = Tela.LerPosicaoXadrez().toPosicao();
+
+                    partida.ExecutaMovimento(origem, destino);
                 }
+
             }
-            catch(TabuleiroException exception)
+            catch (TabuleiroException e)
             {
-                Console.WriteLine(exception.Message);
+                Console.WriteLine(e.Message);
             }
             catch (Exception exception)
             {
-                Console.WriteLine($"\nErro inesperado:\nMensagem: {exception.Message}");
+                Console.WriteLine($"\nErro inesperado:\nMensagem: {exception.Message}\nTipo: {exception.GetType()}");
             }
+            
         }
     }
 }

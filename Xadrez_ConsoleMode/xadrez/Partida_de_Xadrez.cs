@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xadrez_ConsoleMode.tabuleiro;
 using Xadrez_ConsoleMode.tabuleiro.Enums;
+using Xadrez_ConsoleMode.xadrez.Pecas;
 
 namespace Xadrez_ConsoleMode.xadrez
 {

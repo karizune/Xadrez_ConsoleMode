@@ -7,14 +7,14 @@ namespace Xadrez_ConsoleMode.tabuleiro
 {
     class Tabuleiro
     {
-        public int Linhas { get; set; }
-        public int Colunas { get; set; }
+        public int linhas { get; set; }
+        public int colunas { get; set; }
         private Peca[,] pecas;
 
         public Tabuleiro(int linhas, int colunas)
         {
-            Linhas = linhas;
-            Colunas = colunas;
+            this.linhas = linhas;
+            this.colunas = colunas;
             pecas = new Peca[linhas, colunas];
         }
 
@@ -27,6 +27,11 @@ namespace Xadrez_ConsoleMode.tabuleiro
         {
             return pecas[posicao.Linha, posicao.Coluna];
         }
+        public bool ExistePeca(Posicao pos)
+        {
+            ValidarPosicao(pos);
+            return peca(pos) != null;
+        }
         public void colocarPeca(Peca peca, Posicao posicao)
         {
             if (ExistePeca(posicao))
@@ -34,6 +39,7 @@ namespace Xadrez_ConsoleMode.tabuleiro
                 throw new TabuleiroException("Já existe uma peça nesta posição");
             }
             pecas[posicao.Linha, posicao.Coluna] = peca;
+            peca.posicao = posicao;
         }
         public Peca retirarPeca(Posicao posicao)
         {
@@ -45,19 +51,14 @@ namespace Xadrez_ConsoleMode.tabuleiro
             {
                 Peca aux = peca(posicao);
                 aux.posicao = null;
-                pecas[posicao.Linha, posicao.Coluna] = null;
+                pecas[posicao.Linha,posicao.Coluna] = null;
                 return aux;
             }
         }
 
-        public bool ExistePeca(Posicao pos)
-        {
-            ValidarPosicao(pos);
-            return peca(pos) != null;
-        }
         public bool posicaoValida(Posicao posicao)
         {
-            if (posicao.Linha < 0 || posicao.Linha >= Linhas || posicao.Coluna < 0 || posicao.Coluna >= Colunas)
+            if (posicao.Linha < 0 || posicao.Linha >= linhas || posicao.Coluna < 0 || posicao.Coluna >= colunas)
             {
                 return false;
             }

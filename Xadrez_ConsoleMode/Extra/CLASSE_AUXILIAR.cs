@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Xadrez_ConsoleMode
+namespace Xadrez_ConsoleMode.Extra
 {
     public static class CLASSE_AUXILIAR
     {
