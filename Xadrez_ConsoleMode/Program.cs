@@ -24,7 +24,7 @@ namespace Xadrez_ConsoleMode
                         bool[,] posicoesPossiveis = partida.tabuleiro.peca(origem).movimentosPossiveis();
                         Console.Clear();
                         Tela.ImprimirTabuleiro(partida.tabuleiro, posicoesPossiveis);
-                        Console.Write("\n\nDestino: ");
+                        Console.Write("\nDestino: ");
                         Posicao destino = Tela.LerPosicaoXadrez().toPosicao();
                         partida.validarPosicaoDeDestino(origem, destino);
                         partida.RealizaJogada(origem, destino);

@@ -27,6 +27,27 @@ namespace Xadrez_ConsoleMode.xadrez
             colocarPecas();
         }
 
+        private Cor adversaria(Cor cor)
+        {
+            if (cor == Cor.Branca)
+            {
+                return Cor.Preta;
+            }
+            else
+            {
+                return Cor.Branca;
+            }
+        }
+        private Peca rei(Cor cor)
+        {
+            foreach(Peca x in pecasEmJogo(cor))
+            {
+                if(x is Rei)
+                {
+
+                }
+            }
+        }
         public void validarPosicaoDeOrigem(Posicao posicao)
         {
             if (tabuleiro.peca(posicao) == null)
@@ -66,7 +87,7 @@ namespace Xadrez_ConsoleMode.xadrez
             MudaJogador();
             turno++;
         }
-        public void ExecutaMovimento(Posicao Origem, Posicao Destino)
+        public Peca ExecutaMovimento(Posicao Origem, Posicao Destino)
         {
             Peca p = tabuleiro.retirarPeca(Origem);
             p.IncrementarMovimento();
@@ -76,6 +97,7 @@ namespace Xadrez_ConsoleMode.xadrez
             {
                 Capturadas.Add(pecaCapturada);
             }
+            return pecaCapturada;
         }
         private void MudaJogador()
         {
