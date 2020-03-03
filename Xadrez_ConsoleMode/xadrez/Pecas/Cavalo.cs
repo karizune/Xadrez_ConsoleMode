@@ -14,7 +14,58 @@ namespace Xadrez_ConsoleMode.xadrez.Pecas
 
         public override bool[,] movimentosPossiveis()
         {
-            throw new NotImplementedException();
+            bool[,] matriz = new bool[tabuleiro.linhas, tabuleiro.colunas];
+            Posicao pos = new Posicao(0, 0);
+            //esquerda baixo
+            pos.DefinirValores(posicao.Linha + 1, posicao.Coluna - 2); 
+            if (tabuleiro.posicaoValida(pos) && podeMover(pos))
+            {
+                matriz[pos.Linha, pos.Coluna] = true;
+            }                   
+            //baixo esquerda
+            pos.DefinirValores(posicao.Linha + 2, posicao.Coluna - 1); 
+            if (tabuleiro.posicaoValida(pos) && podeMover(pos))
+            {
+                matriz[pos.Linha, pos.Coluna] = true;
+            }            
+            //baixo direita
+            pos.DefinirValores(posicao.Linha + 2, posicao.Coluna + 1); 
+            if (tabuleiro.posicaoValida(pos) && podeMover(pos))
+            {
+                matriz[pos.Linha, pos.Coluna] = true;
+            }            
+            //direita baixo
+            pos.DefinirValores(posicao.Linha + 1, posicao.Coluna + 2); 
+            if (tabuleiro.posicaoValida(pos) && podeMover(pos))
+            {
+                matriz[pos.Linha, pos.Coluna] = true;
+            }
+
+            //esquerda cima
+            pos.DefinirValores(posicao.Linha - 1, posicao.Coluna - 2); 
+            if (tabuleiro.posicaoValida(pos) && podeMover(pos))
+            {
+                matriz[pos.Linha, pos.Coluna] = true;
+            }                   
+            //cima esquerda
+            pos.DefinirValores(posicao.Linha - 2, posicao.Coluna - 1); 
+            if (tabuleiro.posicaoValida(pos) && podeMover(pos))
+            {
+                matriz[pos.Linha, pos.Coluna] = true;
+            }            
+            //cima direita
+            pos.DefinirValores(posicao.Linha - 2, posicao.Coluna + 1); 
+            if (tabuleiro.posicaoValida(pos) && podeMover(pos))
+            {
+                matriz[pos.Linha, pos.Coluna] = true;
+            }            
+            //direita cima
+            pos.DefinirValores(posicao.Linha - 1, posicao.Coluna + 2); 
+            if (tabuleiro.posicaoValida(pos) && podeMover(pos))
+            {
+                matriz[pos.Linha, pos.Coluna] = true;
+            }
+            return matriz;
         }
 
         public override string ToString()

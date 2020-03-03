@@ -12,11 +12,6 @@ namespace Xadrez_ConsoleMode.xadrez.Pecas
         {
         }
 
-        private bool podeMover(Posicao posicao)
-        {
-            Peca p = tabuleiro.peca(posicao);
-            return p == null || p.cor != cor;
-        }
         public override bool[,] movimentosPossiveis()
         {
             bool[,] matriz = new bool[tabuleiro.linhas, tabuleiro.colunas];

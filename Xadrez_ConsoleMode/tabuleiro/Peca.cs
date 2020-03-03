@@ -20,6 +20,12 @@ namespace Xadrez_ConsoleMode.tabuleiro
             this.tabuleiro = tabuleiro;
             QuantidadeMovimentos = 0;
         }
+
+        protected bool podeMover(Posicao posicao)
+        {
+            Peca p = tabuleiro.peca(posicao);
+            return p == null || p.cor != cor;
+        }
         public void IncrementarMovimento()
         {
             QuantidadeMovimentos++;

@@ -11,61 +11,87 @@ namespace Xadrez_ConsoleMode.xadrez.Pecas
         public Peao(Cor cor, Tabuleiro tabuleiro) : base(cor, tabuleiro)
         {
         }
-
-        private bool podeMover(Posicao posicao)
-        {
-            Peca p = tabuleiro.peca(posicao);
-            return p == null || p.cor != cor;
-        }
         public override bool[,] movimentosPossiveis()
         {
             bool[,] matriz = new bool[tabuleiro.linhas, tabuleiro.colunas];
             Posicao pos = new Posicao(0, 0);
-            if (QuantidadeMovimentos == 0)
-            {
-                //acima
-                pos.DefinirValores(posicao.Linha - 1, posicao.Coluna);
-                if (tabuleiro.posicaoValida(pos) && podeMover(pos))
+            if (cor == Cor.Branca) {
+                if (QuantidadeMovimentos == 0)
                 {
-                    matriz[pos.Linha, pos.Coluna] = true;
+                    //acima
+                    pos.DefinirValores(posicao.Linha - 1, posicao.Coluna);
+                    if (tabuleiro.posicaoValida(pos) && podeMover(pos))
+                    {
+                        matriz[pos.Linha, pos.Coluna] = true;
+                    }
+                    pos.DefinirValores(posicao.Linha - 2, posicao.Coluna);
+                    if (tabuleiro.posicaoValida(pos) && podeMover(pos))
+                    {
+                        matriz[pos.Linha, pos.Coluna] = true;
+                    }
                 }
-                pos.DefinirValores(posicao.Linha - 2, posicao.Coluna);
-                if(tabuleiro.posicaoValida(pos)&& podeMover(pos))
+                else if (tabuleiro.ExistePeca(posicao.Linha - 1, posicao.Coluna + 1) || tabuleiro.ExistePeca(posicao.Linha - 1, posicao.Coluna - 1))
                 {
-                    matriz[pos.Linha, pos.Coluna] = true;
+                    // acima direita
+                    pos.DefinirValores(posicao.Linha - 1, posicao.Coluna + 1);
+                    if (tabuleiro.posicaoValida(pos) && podeMover(pos))
+                    {
+                        matriz[pos.Linha, pos.Coluna] = true;
+                    }
+                    //acima esquerda
+                    pos.DefinirValores(posicao.Linha - 1, posicao.Coluna - 1);
+                    if (tabuleiro.posicaoValida(pos) && podeMover(pos))
+                    {
+                        matriz[pos.Linha, pos.Coluna] = true;
+                    }
                 }
-                // acima direita
-                pos.DefinirValores(posicao.Linha - 1, posicao.Coluna + 1);
-                if (tabuleiro.posicaoValida(pos) && podeMover(pos))
+                else
                 {
-                    matriz[pos.Linha, pos.Coluna] = true;
-                }
-                //acima esquerda
-                pos.DefinirValores(posicao.Linha - 1, posicao.Coluna -1);
-                if (tabuleiro.posicaoValida(pos) && podeMover(pos))
-                {
-                    matriz[pos.Linha, pos.Coluna] = true;
-                }
+                    pos.DefinirValores(posicao.Linha - 1, posicao.Coluna);
+                    if (tabuleiro.posicaoValida(pos) && podeMover(pos))
+                    {
+                        matriz[pos.Linha, pos.Coluna] = true;
+                    }
+                } 
             }
             else
             {
-                //acima
-                pos.DefinirValores(posicao.Linha - 1, posicao.Coluna);
-                if (tabuleiro.posicaoValida(pos) && podeMover(pos))
+                if (QuantidadeMovimentos == 0)
                 {
-                    matriz[pos.Linha, pos.Coluna] = true;
+                    //abaixo
+                    pos.DefinirValores(posicao.Linha + 1, posicao.Coluna);
+                    if (tabuleiro.posicaoValida(pos) && podeMover(pos))
+                    {
+                        matriz[pos.Linha, pos.Coluna] = true;
+                    }
+                    pos.DefinirValores(posicao.Linha + 2, posicao.Coluna);
+                    if (tabuleiro.posicaoValida(pos) && podeMover(pos))
+                    {
+                        matriz[pos.Linha, pos.Coluna] = true;
+                    }
                 }
-                // acima direita
-                pos.DefinirValores(posicao.Linha - 1, posicao.Coluna + 1);
-                if (tabuleiro.posicaoValida(pos) && podeMover(pos))
+                else if (tabuleiro.ExistePeca(posicao.Linha + 1, posicao.Coluna + 1) || tabuleiro.ExistePeca(posicao.Linha + 1, posicao.Coluna - 1))
                 {
-                    matriz[pos.Linha, pos.Coluna] = true;
+                    // abaixo direita
+                    pos.DefinirValores(posicao.Linha + 1, posicao.Coluna + 1);
+                    if (tabuleiro.posicaoValida(pos) && podeMover(pos))
+                    {
+                        matriz[pos.Linha, pos.Coluna] = true;
+                    }
+                    //abaixo esquerda
+                    pos.DefinirValores(posicao.Linha + 1, posicao.Coluna - 1);
+                    if (tabuleiro.posicaoValida(pos) && podeMover(pos))
+                    {
+                        matriz[pos.Linha, pos.Coluna] = true;
+                    }
                 }
-                //acima esquerda
-                pos.DefinirValores(posicao.Linha - 1, posicao.Coluna - 1);
-                if (tabuleiro.posicaoValida(pos) && podeMover(pos))
+                else
                 {
-                    matriz[pos.Linha, pos.Coluna] = true;
+                    pos.DefinirValores(posicao.Linha + 1, posicao.Coluna);
+                    if (tabuleiro.posicaoValida(pos) && podeMover(pos))
+                    {
+                        matriz[pos.Linha, pos.Coluna] = true;
+                    }
                 }
             }
             return matriz;

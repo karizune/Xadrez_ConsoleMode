@@ -38,6 +38,23 @@ namespace Xadrez_ConsoleMode.xadrez
                 throw new TabuleiroException("Peça escolhida não tem movimentos disponíveis!");
             }
         }
+        public void validarPosicaoDeDestino(Posicao origem, Posicao destino)
+        {
+            bool[,] matriz = tabuleiro.peca(origem).movimentosPossiveis();
+
+            if (matriz[destino.Linha, destino.Coluna] == false)
+            {
+                throw new TabuleiroException("Não pode mover para este local!");
+            }
+            if (tabuleiro.peca(destino) != null)
+            {
+                if (tabuleiro.peca(origem).cor == tabuleiro.peca(destino).cor)
+                {
+                    throw new TabuleiroException("Não pode capturar própria peça!");
+                }
+            }
+
+        }
         public void ExecutaMovimento(Posicao Origem, Posicao Destino)
         {
             Peca p = tabuleiro.retirarPeca(Origem);

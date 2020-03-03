@@ -32,6 +32,12 @@ namespace Xadrez_ConsoleMode.tabuleiro
             ValidarPosicao(pos);
             return peca(pos) != null;
         }
+        public bool ExistePeca(int Linha,int Coluna)
+        {
+            Posicao pos = new Posicao(Linha, Coluna);
+            ValidarPosicao(pos);
+            return peca(pos) != null;
+        }
         public void colocarPeca(Peca peca, Posicao posicao)
         {
             if (ExistePeca(posicao))

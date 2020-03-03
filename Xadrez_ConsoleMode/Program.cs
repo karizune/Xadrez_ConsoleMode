@@ -27,11 +27,17 @@ namespace Xadrez_ConsoleMode
                         Tela.ImprimirTabuleiro(partida.tabuleiro, posicoesPossiveis);
                         Console.Write("\n\nDestino: ");
                         Posicao destino = Tela.LerPosicaoXadrez().toPosicao();
+                        partida.validarPosicaoDeDestino(origem, destino);
                         partida.RealizaJogada(origem, destino);
                     }
-                    catch(TabuleiroException exception)
+                    catch (TabuleiroException exception)
                     {
                         Console.WriteLine($"\nErro: {exception.Message}");
+                        Console.ReadLine();
+                    }
+                    catch (Exception exception)
+                    {
+                        Console.WriteLine($"\nErro inesperado:\nMensagem: {exception.Message}\nTipo: {exception.GetType()}");
                         Console.ReadLine();
                     }
                 }
@@ -45,7 +51,7 @@ namespace Xadrez_ConsoleMode
             {
                 Console.WriteLine($"\nErro inesperado:\nMensagem: {exception.Message}\nTipo: {exception.GetType()}");
             }
-            
+
         }
     }
 }

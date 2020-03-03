@@ -11,12 +11,6 @@ namespace Xadrez_ConsoleMode.xadrez.Pecas
         public Torre(Cor cor, Tabuleiro tabuleiro) : base(cor, tabuleiro)
         {
         }
-
-        private bool podeMover(Posicao posicao)
-        {
-            Peca p = tabuleiro.peca(posicao);
-            return p == null || p.cor != cor;
-        }
         public override bool[,] movimentosPossiveis()
         {
             bool[,] mat = new bool[tabuleiro.linhas, tabuleiro.colunas];
