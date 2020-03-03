@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Xadrez_ConsoleMode.tabuleiro.Enums;
+using Xadrez_ConsoleMode.tabuleiro.Exceptions;
 
 namespace Xadrez_ConsoleMode.tabuleiro
 {
@@ -22,6 +23,21 @@ namespace Xadrez_ConsoleMode.tabuleiro
         public void IncrementarMovimento()
         {
             QuantidadeMovimentos++;
+        }
+        public bool existeMovimentosPossiveis()
+        {
+            bool[,] matriz = movimentosPossiveis();
+            for (int i = 0; i < tabuleiro.linhas; i++)
+            {
+                for (int j = 0; j < tabuleiro.colunas; j++)
+                {
+                    if (matriz[i,j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
         public abstract bool[,] movimentosPossiveis();
     }

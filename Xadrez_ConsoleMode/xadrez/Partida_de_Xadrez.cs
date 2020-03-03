@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xadrez_ConsoleMode.tabuleiro;
 using Xadrez_ConsoleMode.tabuleiro.Enums;
+using Xadrez_ConsoleMode.tabuleiro.Exceptions;
 using Xadrez_ConsoleMode.xadrez.Pecas;
 
 namespace Xadrez_ConsoleMode.xadrez
@@ -22,13 +23,23 @@ namespace Xadrez_ConsoleMode.xadrez
             colocarPecas();
             PartidaTerminada = false;
         }
-
+        public void validarPosicaoDeOrigem(Posicao posicao)
+        {
+            if (tabuleiro.peca(posicao) == null)
+            {
+                throw new TabuleiroException("Não existe peça na posição selecionada!");
+            }
+            if (tabuleiro.peca(posicao).cor != JogadorAtual)
+            {
+                throw new TabuleiroException("Peça escolhida é do adversário!");
+            }
+            if (!tabuleiro.peca(posicao).existeMovimentosPossiveis())
+            {
+                throw new TabuleiroException("Peça escolhida não tem movimentos disponíveis!");
+            }
+        }
         public void ExecutaMovimento(Posicao Origem, Posicao Destino)
         {
-            if (ExistePeca(Destino))
-            {
-
-            }
             Peca p = tabuleiro.retirarPeca(Origem);
             p.IncrementarMovimento();
             Peca pecaCapturada = tabuleiro.retirarPeca(Destino);
